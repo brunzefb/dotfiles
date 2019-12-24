@@ -1,0 +1,119 @@
+# Set default behavior to automatically normalize line endings. (CR/LF on machine, LF in git)
+* text=auto eol=lf
+*.{cmd,[cC][mM][dD]} text eol=crlf
+*.{bat,[bB][aA][tT]} text eol=crlf
+###############################################################################
+# Set the merge driver for project and solution files
+#
+# Merging from the command prompt will add diff markers to the files if there
+# are conflicts (Merging from VS is not affected by the settings below, in VS
+# the diff markers are never inserted). Diff markers may cause the following 
+# file extensions to fail to load in VS. An alternative would be to treat
+# these files as binary and thus will always conflict and require user
+# intervention with every merge. To do so, just comment the entries below and
+# uncomment the group further below
+###############################################################################
+*.cs 		 diff=csharp text
+*.sln        text eol=crlf merge=binary
+*.csproj     text eol=crlf merge=binary
+*.vbproj     text eol=crlf merge=binary
+*.vcxproj    text eol=crlf merge=binary
+*.vcproj     text eol=crlf merge=binary
+*.dbproj     text eol=crlf merge=binary
+*.fsproj     text eol=crlf merge=binary
+*.lsproj     text eol=crlf merge=binary
+*.wixproj    text eol=crlf merge=binary
+*.modelproj  text eol=crlf merge=binary
+*.sqlproj    text eol=crlf merge=binary
+*.wmaproj    text eol=crlf merge=binary
+*.xproj      text eol=crlf merge=binary
+*.props      text eol=crlf merge=binary
+*.filters    text eol=crlf merge=binary 
+*.vcxitems   text eol=crlf merge=binary
+*.mol        merge=binary
+*.xaml       merge=binary
+.bashrc text eol=lf
+.bash_profile text eol=lf
+
+## git-lfs ##
+
+#Image
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.jpeg filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text
+*.gif filter=lfs diff=lfs merge=lfs -text
+*.psd filter=lfs diff=lfs merge=lfs -text
+*.ai filter=lfs diff=lfs merge=lfs -text
+*.tif filter=lfs diff=lfs merge=lfs -text
+*.ico filter=lfs diff=lfs merge=lfs -text
+*.bmp filter=lfs diff=lfs merge=lfs -text
+
+#Sciex
+*.wiff filter=lfs diff=lfs merge=lfs -text
+*.wiff2 filter=lfs diff=lfs merge=lfs -text
+*.scan filter=lfs diff=lfs merge=lfs -text
+*.mpr filter=lfs diff=lfs merge=lfs -text
+*.mpcr filter=lfs diff=lfs merge=lfs -text
+*.qsession filter=lfs diff=lfs merge=lfs -text
+*.method filter=lfs diff=lfs merge=lfs -text
+*.lbp filter=lfs diff=lfs merge=lfs -text
+*.msm-journal filter=lfs diff=lfs merge=lfs -text
+*.msm filter=lfs diff=lfs merge=lfs -text
+*.lcm-journal filter=lfs diff=lfs merge=lfs -text
+*.lcm filter=lfs diff=lfs merge=lfs -text
+*.bch-journal filter=lfs diff=lfs merge=lfs -text
+*.bch filter=lfs diff=lfs merge=lfs -text
+*.xps filter=lfs diff=lfs merge=lfs -text
+.special filter=lfs diff=lfs merge=lfs -text
+.project filter=lfs diff=lfs merge=lfs -text
+*.eml filter=lfs diff=lfs merge=lfs -text
+*.dam filter=lfs diff=lfs merge=lfs -text
+*.dab filter=lfs diff=lfs merge=lfs -text
+*.dad.scan filter=lfs diff=lfs merge=lfs -text
+*.dad.sidx filter=lfs diff=lfs merge=lfs -text
+*.qmap filter=lfs diff=lfs merge=lfs -text
+*.hwpf filter=lfs diff=lfs merge=lfs -text
+
+## below are ignored by default, but can be added with git add -f and committed.
+
+#Audio
+*.mp3 filter=lfs diff=lfs merge=lfs -text
+*.wav filter=lfs diff=lfs merge=lfs -text
+*.ogg filter=lfs diff=lfs merge=lfs -text
+
+#Video
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+*.mov filter=lfs diff=lfs merge=lfs -text
+
+#3D Object
+*.FBX filter=lfs diff=lfs merge=lfs -text
+*.fbx filter=lfs diff=lfs merge=lfs -text
+*.blend filter=lfs diff=lfs merge=lfs -text
+*.obj filter=lfs diff=lfs merge=lfs -text
+*.asset filter=lfs diff=lfs merge=lfs -text
+
+#ETC
+*.exr filter=lfs diff=lfs merge=lfs -text
+*.pdf filter=lfs diff=lfs merge=lfs -text
+*.zip filter=lfs diff=lfs merge=lfs -text
+*.aif filter=lfs diff=lfs merge=lfs -text
+*.ttf filter=lfs diff=lfs merge=lfs -text
+*.tar filter=lfs diff=lfs merge=lfs -text
+*.gz filter=lfs diff=lfs merge=lfs -text
+*.7z filter=lfs diff=lfs merge=lfs -text
+
+#Other binaries
+*.exe filter=lfs diff=lfs merge=lfs -text
+*.dll filter=lfs diff=lfs merge=lfs -text
+*.doc filter=lfs diff=lfs merge=lfs -text
+*.ppt filter=lfs diff=lfs merge=lfs -text
+*.docx filter=lfs diff=lfs merge=lfs -text
+*.pptx filter=lfs diff=lfs merge=lfs -text
+*.lib filter=lfs diff=lfs merge=lfs -text
+*.svb filter=lfs diff=lfs merge=lfs -text
+*.msi filter=lfs diff=lfs merge=lfs -text
+*.msm filter=lfs diff=lfs merge=lfs -text
+*.dat filter=lfs diff=lfs merge=lfs -text
+*.bin filter=lfs diff=lfs merge=lfs -text
+*.baml filter=lfs diff=lfs merge=lfs -text
+

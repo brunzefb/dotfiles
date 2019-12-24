@@ -1,0 +1,81 @@
+[user]
+	name = Friedrich Brunzema
+	email = Friedrich.Brunzema@sciex.com
+[core]
+	autocrlf = false
+	excludesfile = C:\\Users\\Friedrich.Brunzema\\Documents\\gitignore_global.txt
+	safecrlf = warn
+  	pager = less -r
+  packedGitLimit = 256m
+  packedGitWindowSize = 256m
+[pack]
+  deltaCacheSize = 256m
+  packSizeLimit = 256m
+  windowMemory = 256m
+[push]
+	default = simple
+[alias]
+lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold white)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all -n 30
+lgm = log  --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold white)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all -n 20 master
+lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold white)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+lg = !"git --no-pager lg1"
+stl = lfs status
+st = status
+clearindex = rm -r --cached
+ignored = !git ls-files -v | grep "^[[:lower:]]"
+cm = !"git add -A && git commit -m"
+cob = checkout -b
+cla = clean -d -fx .
+cl = clean -f -d
+conflicts = diff --name-only --diff-filter=U
+addall = add . --all
+ahead = !sh -c \"git fetch origin develop  && echo 'Number of commits develop ahead of origin/develop' && git rev-list develop --not origin/develop --count && echo 'Number of commits remote(origin/develop) is ahead of develop' && git rev-list origin/develop --not develop --count \"
+mergemine = !"git merge -s recursive -X ours"
+lgm = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold white)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all -n 20 origin/develop..
+lgd = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold white)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all -n 20 origin/master..
+mergetheirs = !"git merge -s recursive -X theirs"
+donttrack = update-index --assume-unchanged
+pushbranch = push -u origin
+sshow = "!f() { git stash show stash^{/$*} -p; }; f"
+sapply = "!f() { git stash apply stash^{/$*}; }; f"
+current = rev-parse --short HEAD
+cher = cherry -v feature/OFX-492_Integ_net_standard
+bc = difftool -Y
+rh = reset --hard
+cpr = !sh -c 'stash pull-request \\$0 \\$@'
+#logsha1 = !"f() {git log --format=format:%H -n $0 | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g'}; f"
+# git oldest-ancestor feature-branch  branched-from branch --> commit on branch-from branch where we branched
+oldest-ancestor = !bash -c 'diff --old-line-format= --new-line-format= <(git rev-list --first-parent \"${1:-master}\") <(git rev-list --first-parent \"${2:-HEAD}\") | head -1' -
+	branchlog = !sh -c \"git log `git oldest-ancestor`..\"
+	branchdiff = !sh -c \"git diff `git oldest-ancestor`..\"
+	squash = !sh -c \"git rebase -i HEAD~`git rev-list --count HEAD ^develop`\"
+	tags = log --oneline --decorate --tags --no-walk
+# git tag -a RC4 sha1
+branch-name = "!git rev-parse --abbrev-ref HEAD"
+publish = "!git push -u origin $(git branch-name)" 
+# Delete the remote version of the current branch 
+unpublish = "!git push origin :$(git branch-name)" 
+# Delete a branch and recreate it from master — useful if you have, say, 
+# a development branch and a master branch and they could conceivably go 
+# out of sync 
+recreate = "!f() { [[ -n $@ ]] && git checkout \"$@\" && git unpublish && git checkout master && git branch -D \"$@\" && git checkout -b \"$@\" && git publish; }; f"
+# Interactively rebase all the commits on the current branch 
+rebase-branch = "!git rebase -i `git merge-base master HEAD`"
+# git push origin RC4
+co = checkout
+[diff]
+	tool = bc3
+[difftool "bc3"]
+	path = c:/program files (x86)/Beyond Compare 3/bcomp.exe
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[credential]
+	helper = /c/Program\\ Files/git/mingw64/libexec/git-core/git-credential-manager.exe
+[difftool "sourcetree"]
+	cmd = '' \"$LOCAL\" \"$REMOTE\"
+[mergetool "sourcetree"]
+	cmd = "'' "
+	trustExitCode = true
