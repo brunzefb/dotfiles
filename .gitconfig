@@ -1,11 +1,9 @@
 [user]
-	name = Friedrich Brunzema
-	email = Friedrich.Brunzema@sciex.com
+	
 [core]
-	autocrlf = false
-	excludesfile = C:\\Users\\Friedrich.Brunzema\\Documents\\gitignore_global.txt
-	safecrlf = warn
-  	pager = less -r
+  autocrlf = false 
+  safecrlf = warn
+  pager = less -r
   packedGitLimit = 256m
   packedGitWindowSize = 256m
 [pack]
@@ -60,22 +58,18 @@ unpublish = "!git push origin :$(git branch-name)"
 # out of sync 
 recreate = "!f() { [[ -n $@ ]] && git checkout \"$@\" && git unpublish && git checkout master && git branch -D \"$@\" && git checkout -b \"$@\" && git publish; }; f"
 # Interactively rebase all the commits on the current branch 
-rebase-branch = "!git rebase -i `git merge-base master HEAD`"
+rebase-develop = "!git rebase -i `git merge-base develop HEAD`"
 # git push origin RC4
 co = checkout
-[diff]
-	tool = bc3
-[difftool "bc3"]
-	path = c:/program files (x86)/Beyond Compare 3/bcomp.exe
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
 [credential]
-	helper = /c/Program\\ Files/git/mingw64/libexec/git-core/git-credential-manager.exe
+	helper = /c/Program\\ Files/Git/mingw64/libexec/git-core/git-credential-manager.exe
 [difftool "sourcetree"]
 	cmd = '' \"$LOCAL\" \"$REMOTE\"
-[mergetool "sourcetree"]
-	cmd = "'' "
-	trustExitCode = true
+[user]
+	name = friedrich
+	email = friedrich.brunzema@sciex.com

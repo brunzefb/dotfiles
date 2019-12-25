@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/home/friedrich/.oh-my-zsh
+export ZSH=/home/$USER/.oh-my-zsh
 ZSH_THEME=muse  #pygmalion
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -40,7 +40,7 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=true
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git colorize github jira vagrant virtualenv pip python brew autojump)
 # User configuration
-export PATH=$PATH:$HOME/.local/bin:/home/friedrich/.dotnet/tools
+export PATH=$PATH:$HOME/.local/bin:/home/$USER/.dotnet/tools
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:/usr/local/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
 export DOCKER_HOST=tcp://localhost:2375
@@ -62,7 +62,7 @@ alias del=rmtrash
 alias ls='ls -la'
 alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"
 alias md=mkdir
-SSH_ENV=$HOME/.ssh/environment
+SSH_ENV=$HOME/.ssh
 export BOTO_CONFIG=/Users/dev/.aws/credentials
 alias prettyjson='python -m json.tool'
 alias listext='find . -not -iwholename "*.git*" -type f | egrep -i -E -o "\.{1}\w*$" | sort | uniq -c | sort -rn'
@@ -79,6 +79,7 @@ function fex1 () {
     str2=$str$1
     vim "`find . -type f -not -iwholename "*.git*" -name "$str2" -print | sed '1!d;q'`"
 }
+
 function display_ignore(){
 	if [ -d "testignore" ]; then
 	  rm -rf testignore
@@ -105,6 +106,7 @@ function git-checkout-pr()
 export GIT_EDITOR=/usr/bin/vim
 #export LS_COLORS="di=31;1:ln=36;1:ex=31;1:*~=31;1:*.html=31;1:*.shtml=37;1"
 # start the ssh-agent
+
 function start_agent {
     echo "Initializing new SSH agent..."
     # spawn ssh-agent
@@ -112,8 +114,8 @@ function start_agent {
     echo succeeded
     chmod 600 "${SSH_ENV}"
     . "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add ~/.ssh/github_rsa
 }
+
 if [ -f "${SSH_ENV}" ]; then
      . "${SSH_ENV}" > /dev/null
      ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
@@ -139,7 +141,7 @@ else
   export LSCOLORS=$LSCOLORS
   alias ls='ls -laG'
 fi
-    [[ -s /home/friedrich/.autojump/etc/profile.d/autojump.sh ]] && source /home/friedrich/.autojump/etc/profile.d/autojump.sh
+    [[ -s /home/$USER/.autojump/etc/profile.d/autojump.sh ]] && source /home/$USER/.autojump/etc/profile.d/autojump.sh
 autoload -U compinit && compinit -u
 # Use same colors for autocompletion
 zmodload -a colors
@@ -147,4 +149,4 @@ zmodload -a autocomplete
 zmodload -a complist
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 #unsetopt BG_NICE
-cd /home/friedrich/git
+cd /home/$USER/git
