@@ -62,7 +62,7 @@ alias del=rmtrash
 alias ls='ls -la'
 alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"
 alias md=mkdir
-SSH_ENV=$HOME/.ssh
+
 export BOTO_CONFIG=/Users/dev/.aws/credentials
 alias prettyjson='python -m json.tool'
 alias listext='find . -not -iwholename "*.git*" -type f | egrep -i -E -o "\.{1}\w*$" | sort | uniq -c | sort -rn'
@@ -107,26 +107,28 @@ export GIT_EDITOR=/usr/bin/vim
 #export LS_COLORS="di=31;1:ln=36;1:ex=31;1:*~=31;1:*.html=31;1:*.shtml=37;1"
 # start the ssh-agent
 
+SSH_ENV="$HOME/.ssh/environment"
+
 function start_agent {
-    echo "Initializing new SSH agent..."
-    # spawn ssh-agent
+    echo "Initialising new SSH agent..."
     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
     echo succeeded
     chmod 600 "${SSH_ENV}"
     . "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add
+    /usr/bin/ssh-add;
 }
 
+# Source SSH settings, if applicable
+
 if [ -f "${SSH_ENV}" ]; then
-     . "${SSH_ENV}" > /dev/null
-     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+    . "${SSH_ENV}" > /dev/null
+    #ps ${SSH_AGENT_PID} doesn't work under cywgin
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
         start_agent;
     }
 else
     start_agent;
 fi
-
-
 
 autoload colors; colors;
 export LS_COLORS="di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32";
