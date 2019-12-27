@@ -126,8 +126,9 @@ function copy_dotfiles () {
 
 function create_ssh_keypair () {
     mkdir -p /home/$USER/.ssh
-    sudo chown friedrich:friedrich /home/$USER/.ssh
+    sudo chown $USER:$USER /home/$USER/.ssh
     chmod 744 /home/$USER/.ssh
+
     ssh-keygen -t rsa -b 4096 -P "" -f /home/$USER/.ssh/id_rsa
     chmod 600 /home/$USER/.ssh/*
 }
