@@ -145,24 +145,24 @@ function install_powerline_fonts () {
 
 
 function main () {
-    # uname -a | grep "MINGW"
-    # retVal=$?
-    # if [ $retVal -eq 0 ]; then
-    #     install_visual_studio_useful_extensions
-    #     exit
-    # fi
-    # dotfilesdir=$PWD 
-    # cd ~
-    # install_oh_my_zsh
-    # install_autojump
-    # install_dotnet_core_sdk_31_and_21_runtime
-    # install_dotnet_global_tools
-    # install_visual_studio_useful_extensions_if_not_wsl2
-    # install_docker_on_linux_or_wsl2
-    # install_docker_compose
-    # install_git_lfs
-    # fix_git_configuration
-    # copy_dotfiles
+    uname -a | grep "MINGW"
+    retVal=$?
+    if [ $retVal -eq 0 ]; then
+        install_visual_studio_useful_extensions
+        exit
+    fi
+    dotfilesdir=$PWD 
+    cd ~
+    install_oh_my_zsh
+    install_autojump
+    install_dotnet_core_sdk_31_and_21_runtime
+    install_dotnet_global_tools
+    install_visual_studio_useful_extensions_if_not_wsl2
+    install_docker_on_linux_or_wsl2
+    install_docker_compose
+    install_git_lfs
+    fix_git_configuration
+    copy_dotfiles
     create_ssh_keypair
     sudo cp $dotfilesdir/wsl.conf /etc/wsl.conf
     cd $OLDPWD
