@@ -125,6 +125,7 @@ function copy_dotfiles () {
 }
 
 function create_ssh_keypair () {
+    mkdir -p /home/$USER/.ssh
     ssh-keygen -t rsa -b 4096 -P "" -f /home/$USER/.ssh/id_rsa
     chmod 600 /home/$USER/.ssh/*
 }
@@ -159,6 +160,7 @@ function main () {
     install_git_lfs
     fix_git_configuration
     copy_dotfiles
+    create_ssh_keypair
     sudo cp $dotfilesdir/wsl.conf /etc/wsl.conf
     cd $OLDPWD
     figlet "Reboot Windows to Use!" | lolcat
