@@ -144,7 +144,7 @@ else
   export LSCOLORS=$LSCOLORS
   alias ls='ls -laG'
 fi
-    [[ -s /home/$USER/.autojump/etc/profile.d/autojump.sh ]] && source /home/$USER/.autojump/etc/profile.d/autojump.sh
+#    [[ -s /home/$USER/.autojump/etc/profile.d/autojump.sh ]] && source /home/$USER/.autojump/etc/profile.d/autojump.sh
 autoload -U compinit && compinit -u
 # Use same colors for autocompletion
 zmodload -a colors
@@ -152,4 +152,4 @@ zmodload -a autocomplete
 zmodload -a complist
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 #unsetopt BG_NICE
-cd /home/$USER/git
+cd ~/git

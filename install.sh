@@ -19,7 +19,7 @@ function install_autojump () {
 # a windows sysetm reboot may be required after executing this
 # if installing on Windows Subsystem For Linux 2
 function install_dotnet_core_sdk_31_and_21_runtime () {
-    wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+    wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
     sudo dpkg -i packages-microsoft-prod.deb
     sudo add-apt-repository universe
     sudo apt-get update
@@ -71,7 +71,7 @@ function install_docker_on_linux_or_wsl2 () {
     sudo apt update
     sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
     sudo apt update
     apt-cache policy docker-ce
     # Note: on WSL2, this will only install the docker client, as there is no init system
@@ -154,7 +154,7 @@ function main () {
     dotfilesdir=$PWD 
     cd ~
     install_oh_my_zsh
-    install_autojump
+    #install_autojump
     install_dotnet_core_sdk_31_and_21_runtime
     install_dotnet_global_tools
     install_visual_studio_useful_extensions_if_not_wsl2
