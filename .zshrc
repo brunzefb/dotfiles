@@ -38,7 +38,7 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colorize github jira vagrant virtualenv pip python szh-syntax-highlighting zsh-z)
+plugins=(git colorize github jira vagrant virtualenv pip python zhz-z zhs-syntax-highlighting )
 # User configuration
 export PATH=$PATH:$HOME/.local/bin:/home/$USER/.dotnet/tools
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:/usr/local/man:$MANPATH"

@@ -11,7 +11,7 @@ function install_oh_my_zsh () {
 
 function install_zshz () {
     git clone https://github.com/agkozak/zsh-z $ZSH_CUSTOM/plugins/zsh-z
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 }
 
 # a windows sysetm reboot may be required after executing this

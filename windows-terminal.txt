@@ -1,0 +1,17 @@
+Patch into Windows terminal configuration
+Guid found at Registry Editor: HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss
+------------
+      {
+        "guid": "{INSERTYOUR-GUID-f0ec-4cc6-abbe-0eb8c8e472b1}",
+        "hidden": false,
+        "colorScheme": "Solarized Dark",
+        "fontFace": "Source Code Pro for Powerline",
+        "fontSize": 12,
+        "name": "Ubuntu-20.04",
+        "padding": "15, 15, 15, 5",
+        "historySize": 20000,
+        "cursorColor": "#c0c0c0",
+        "startingDirectory": "/e/git",
+        "cursorShape": "vintage",
+        "source": "Windows.Terminal.Wsl"
+      },
