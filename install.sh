@@ -1,6 +1,5 @@
 #!/bin/bash -e
 
-
 function install_oh_my_zsh () {
     sudo apt-get update
     sudo apt install -y zsh
@@ -10,27 +9,27 @@ function install_oh_my_zsh () {
     sudo chmod -R 744 ~/.oh-my-zsh/
 }
 
-function install_autojump () {
-    git clone git://github.com/wting/autojump.git
-    cd autojump
-    ./install.py
+function install_zshz () {
+    git clone https://github.com/agkozak/zsh-z $ZSH_CUSTOM/plugins/zsh-z
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 }
 
 # a windows sysetm reboot may be required after executing this
 # if installing on Windows Subsystem For Linux 2
-function install_dotnet_core_sdk_31_and_21_runtime () {
+function install_dotnet_core_sdk() {
     wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
     sudo dpkg -i packages-microsoft-prod.deb
     sudo add-apt-repository universe
     sudo apt-get update
     sudo apt-get install -y apt-transport-https
     sudo apt-get update
-    sudo apt-get install -y dotnet-sdk-3.1
-    sudo apt-get install -y aspnetcore-runtime-2.1
+    sudo apt-get install -y dotnet-sdk-5.0
+    sudo apt-get install -y aspnetcore-runtime-5.0
+    dotnet --version
 }
 
 function install_dotnet_global_tools () {
-    dotnet tool install -g dotnet-ef --version 3.1.0
+    dotnet tool install -g dotnet-ef
     dotnet tool install -g dotnet-property
     dotnet tool install -g base64urls
     dotnet tool install -g depguard
@@ -40,7 +39,7 @@ function install_dotnet_global_tools () {
 }
 
 function install_visual_studio_useful_extensions_if_not_wsl2 () {
-    uname -a | grep "Microsoft"
+    uname -a | grep "microsoft"
     retVal=$?
     if [ $retVal -ne 0 ]; then
         # don't run on WSL2, but do run on git-bash and true linux/mac
@@ -75,8 +74,7 @@ function install_docker_on_linux_or_wsl2 () {
     sudo apt update
     apt-cache policy docker-ce
     # Note: on WSL2, this will only install the docker client, as there is no init system
-    # you need export DOCKER_HOST=tcp://localhost:2375 in your .bashrc or .zshrc file when running on WSL2
-    # docker desktop must be running, and the option to run unsecure on port 2375 (docker options) must be selected
+    # You MUST configure docker for WSL2 use!
     sudo apt install -y docker-ce   
 }
 
@@ -133,10 +131,6 @@ function create_ssh_keypair () {
     chmod 600 /home/$USER/.ssh/*
 }
 
-function install_docker_compose () {
-    sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-    sudo chmod +x /usr/local/bin/docker-compose
-}
 
 function install_powerline_fonts () {
     git clone https://github.com/Lokaltog/powerline-fonts ./git/powerline-fonts/
@@ -154,19 +148,17 @@ function main () {
     dotfilesdir=$PWD 
     cd ~
     install_oh_my_zsh
-    #install_autojump
-    install_dotnet_core_sdk_31_and_21_runtime
+    install_zshz
+    install_dotnet_core_sdk
     install_dotnet_global_tools
-    install_visual_studio_useful_extensions_if_not_wsl2
     install_docker_on_linux_or_wsl2
-    install_docker_compose
     install_git_lfs
     fix_git_configuration
     copy_dotfiles
     create_ssh_keypair
     sudo cp $dotfilesdir/wsl.conf /etc/wsl.conf
     cd $OLDPWD
-    figlet "Reboot Windows to Use!" | lolcat
+    figlet "Reboot Windows to be safe!" | lolcat
 }
 
 # Run Powershell:  Get-ItemProperty -Path Registry::HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss -Name DefaultDistribution to get the GUID

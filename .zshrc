@@ -1,6 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/home/$USER/.oh-my-zsh
-ZSH_THEME=muse  #pygmalion
+ZSH_THEME=bira  #pygmalion
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -38,12 +38,11 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colorize github jira vagrant virtualenv pip python brew autojump)
+plugins=(git colorize github jira vagrant virtualenv pip python szh-syntax-highlighting zsh-z)
 # User configuration
 export PATH=$PATH:$HOME/.local/bin:/home/$USER/.dotnet/tools
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:/usr/local/man:$MANPATH"
 source $ZSH/oh-my-zsh.sh
-export DOCKER_HOST=tcp://localhost:2375
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 # Compilation flags
@@ -63,7 +62,7 @@ alias ls='ls -la'
 alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"
 alias md=mkdir
 
-export BOTO_CONFIG=/Users/dev/.aws/credentials
+export BOTO_CONFIG=~/.aws/credentials
 alias prettyjson='python -m json.tool'
 alias listext='find . -not -iwholename "*.git*" -type f | egrep -i -E -o "\.{1}\w*$" | sort | uniq -c | sort -rn'
 alias listlarge='find . -xdev -not -iwholename "*git*" -type f -size +100k -exec ls -lh {} \;'
@@ -133,16 +132,25 @@ fi
 autoload colors; colors;
 export LS_COLORS="di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32";
 LSCOLORS="ExGxFxDxCxDxDxhbhdacEc";
-export NUGET_API_KEY=d5ea393b-da95-3ff4-b2cf-c44436e237e6
+export ZSHZ_CMD='j'
+
+alias j=zshz 2>&1
+export EDITOR=vim
+export TERM=xterm-256color
+bindkey -v
+bindkey "^R" history-incremental-search-backward
+export HOST=wsl2
+export HOSTNAME=$HOST
+
 # Do we need Linux or BSD Style?
 if ls --color -d . &>/dev/null 2>&1; then
   # Linux Style
   export LS_COLORS=$LS_COLORS
-  alias ls='ls -la'
+  alias ls='ls -lah'
 else
   # BSD Style
   export LSCOLORS=$LSCOLORS
-  alias ls='ls -laG'
+  alias ls='ls -laGh'
 fi
 #    [[ -s /home/$USER/.autojump/etc/profile.d/autojump.sh ]] && source /home/$USER/.autojump/etc/profile.d/autojump.sh
 autoload -U compinit && compinit -u
