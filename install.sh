@@ -5,7 +5,7 @@ function install_oh_my_zsh () {
     sudo apt install -y zsh
     sudo apt install -y powerline fonts-powerline figlet lolcat
     git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-    sudo chsh -s /bin/zsh
+    sudo chsh -s /usr/bin/zsh
     sudo chmod -R 744 ~/.oh-my-zsh/
 }
 
