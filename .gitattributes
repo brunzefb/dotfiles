@@ -14,9 +14,9 @@
 # uncomment the group further below
 ###############################################################################
 *.cs 		 diff=csharp text
-*.sln        text eol=crlf merge=binary
-*.csproj     text eol=crlf merge=binary
-*.vbproj     text eol=crlf merge=binary
+*.sln        text eol=crlf 
+*.csproj     text eol=crlf 
+*.vbproj     text eol=crlf 
 *.vcxproj    text eol=crlf merge=binary
 *.vcproj     text eol=crlf merge=binary
 *.dbproj     text eol=crlf merge=binary
